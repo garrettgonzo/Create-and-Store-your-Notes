@@ -5,17 +5,39 @@ const fs = require('fs');
 // const readFromFile = util.promisify(fs.readFile);
 
 router.get('/notes', (req, res) => {
-    
     fs.readFile("db/db.json", "utf-8", (err, data)=>{
         if(err) {
             console.log(err)
              res.status(500).json(err)
              return
         }
-        console.log(JSON.parse(data))
         res.json(JSON.parse(data))
     })
-    // readFromFile('./db/tips.json').then((data) => res.json(JSON.parse(data)));
   });
-//console.log(req.body)
+
+router.post('/notes', (req, res) => {
+
+  const filePath = 'db/db.json';
+  
+  fs.readFile("db/db.json", "utf-8", (err, data)=>{
+    if(err) {
+        console.log(err)
+         res.status(500).json(err)
+         return
+    }
+    const existingData = JSON.parse(data)
+    const userInputedData = req.body
+    const combinedData = [...existingData, userInputedData]
+    fs.writeFile(filePath, JSON.stringify(combinedData), (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error writing to the file');
+      }
+    
+      console.log('Data written to db.json');
+      res.status(200).send('Data written to db.json');
+    });
+    res.json(JSON.parse(data))
+})
+});
 module.exports = router;
