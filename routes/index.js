@@ -27,7 +27,8 @@ router.post('/notes', (req, res) => {
     }
     const existingData = JSON.parse(data)
     const userInputedData = req.body
-    const combinedData = [...existingData, userInputedData]
+    const monkeID = {...userInputedData, "id": `${req.body.title}`}
+    const combinedData = [...existingData, monkeID]
     fs.writeFile(filePath, JSON.stringify(combinedData), (err) => {
       if (err) {
         console.error(err);
