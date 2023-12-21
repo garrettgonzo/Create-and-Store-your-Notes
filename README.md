@@ -24,6 +24,12 @@ WHEN I the website is pushed out and works with ease
 
 ## Deployed URL
 
+Heroku says "Application Error" please refer to video
+
+## Walkthrough Video
+
+[![Video](<./Screenshot (1177) 2.jpg)](https://www.youtube.com/watch?v=DQkTbGzY-TQ)
+
 ## Website Screenshot
 
 ![Note taker website screenshot](<Screenshot (1177).png>)
