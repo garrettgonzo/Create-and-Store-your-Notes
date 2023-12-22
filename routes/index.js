@@ -38,7 +38,6 @@ router.post('/notes', (req, res) => {
       console.log('Data written to db.json');
       res.status(200).send('Data written to db.json');
     });
-    res.json(JSON.parse(data))
 })
 });
 module.exports = router;
